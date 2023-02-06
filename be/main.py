@@ -269,7 +269,7 @@ def putStaff():
 
 @app.route("/staffSchedule", methods=['PUT'])
 @cross_origin(origin='*')
-def putSchedule():
+def putStaffSchedule():
     idStaffNew = request.args.get("idStaffNew")
     idScheduleNew = request.args.get("idScheduleNew")
     idStaffCurrent = request.args.get("idStaffCurrent")
@@ -335,7 +335,7 @@ def deleteStaff():
 
 @app.route("/staffSchedule", methods=['DELETE'])
 @cross_origin(origin='*')
-def deleteSchedule():
+def deleteStaffSchedule():
     idStaff = request.args.get("idStaff")
     idSchedule = request.args.get("idSchedule")
     if(idSchedule):
