@@ -61,9 +61,10 @@ def getAllLogDetail():
             "id": r[0],
             "logId": r[1],
             "time": r[2],
-            "image": r[3],
-            "lisence_number": r[4],
-            "staffId": r[5],
+            "type":r[3],
+            "image": r[4],
+            "lisence_number": r[5],
+            "staffId": r[6],
         })
     return jsonify({"logDetail": data})
 

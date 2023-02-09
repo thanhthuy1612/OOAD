@@ -1,0 +1,5 @@
+.addStaff {
+  display: flex;
+  justify-content: right;
+  margin: 20px;
+}
