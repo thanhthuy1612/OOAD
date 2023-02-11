@@ -1,0 +1,6 @@
+.button{
+    display: flex;
+    width: 100px;
+    margin: 20px 5px;
+    justify-content: space-between;
+}

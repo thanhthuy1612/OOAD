@@ -7,7 +7,7 @@ export default function ShowData({ data }) {
   console.log(img);
   return (
     <div className="data">
-      <div>Image:</div>
+      <div>Image: </div>
       <img
         className="data_img"
         src={require("../../assets/images/" +

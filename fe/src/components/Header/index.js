@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import "./Header.css";
 
-export default function Header(props) {
+export default function Header() {
   let location = useLocation();
   const navs = [
     {
@@ -11,6 +11,10 @@ export default function Header(props) {
     {
       text: "Staff",
       router: "/staff",
+    },
+    {
+      text: "Schedule",
+      router: "/schedule",
     },
   ];
   return (

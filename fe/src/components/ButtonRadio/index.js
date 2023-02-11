@@ -1,5 +1,4 @@
 import { Radio } from "antd";
-import { useState } from "react";
 import "./ButtonRadio.css";
 
 export default function ButtonRadio({ type, onChange }) {

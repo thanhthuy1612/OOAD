@@ -1,20 +1,60 @@
-import React from "react";
-import { CameraFeed } from "./CameraFeed";
+import React, { useCallback, useRef, useState } from "react";
+import Webcam from "react-webcam";
 
-// Upload to local seaweedFS instance
-const uploadImage = async (file) => {
-  const formData = new FormData();
-  formData.append("file", file);
-
-  // Connect to a seaweedfs instance
+const videoConstraints = {
+  width: 400,
+  height: 400,
+  facingMode: "user",
 };
+const Profile = () => {
+  const [picture, setPicture] = useState("");
+  const webcamRef = useRef(null);
+  const capture = useCallback(() => {
+    const pictureSrc = webcamRef.current.getScreenshot();
+    setPicture(pictureSrc);
+  }, []);
 
-export default function Camera() {
   return (
-    <div className="App">
-      <h1>Image capture test</h1>
-      <p>Capture image from USB webcamera and upload to form</p>
-      <CameraFeed sendFile={uploadImage} />
+    <div>
+      <div>Camera: </div>
+      <div>
+        {picture === "" ? (
+          <Webcam
+            audio={false}
+            height={400}
+            ref={webcamRef}
+            width={400}
+            screenshotFormat="image/jpeg"
+            videoConstraints={videoConstraints}
+          />
+        ) : (
+          <img src={picture} alt="" />
+        )}
+      </div>
+      <div>
+        {picture !== "" ? (
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setPicture();
+            }}
+            className="btn btn-primary"
+          >
+            Retake
+          </button>
+        ) : (
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              capture();
+            }}
+            className="btn btn-danger"
+          >
+            Capture
+          </button>
+        )}
+      </div>
     </div>
   );
-}
+};
+export default Profile;

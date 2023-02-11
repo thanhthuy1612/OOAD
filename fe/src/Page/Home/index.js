@@ -5,6 +5,8 @@ import { request } from "../../data/url";
 import ShowData from "../../components/ShowData";
 import { Form, Input, Button } from "antd";
 import "./Home.css";
+import Info from "../../components/Info";
+import Profile from "../../components/Camera";
 
 export default function Home() {
   const [logDetail, setLogDetail] = useState([]);
@@ -58,7 +60,6 @@ export default function Home() {
     setIdLog([dataLog, dataLogDetail, dataCard, dataCardType]);
     setData(dataLogDetail);
   };
-  console.log(idLog);
 
   return (
     <div>
@@ -83,13 +84,19 @@ export default function Home() {
             </Button>
           </Form>
           {data.length !== 0 ? (
-            <ShowData data={data[0]} />
+            <div className="home_list">
+              <div>
+                <ShowData data={data[0]} />
+                <Info data={idLog} />
+              </div>
+              <Profile />
+            </div>
           ) : (
             <div className="data">Card Id does not exit</div>
           )}
         </div>
       ) : (
-        <></>
+        <Profile />
       )}
     </div>
   );

@@ -4,8 +4,12 @@ import "./Login.css";
 export default function Login() {
   const [form] = Form.useForm();
   const navigate = useNavigate();
+  const userName = Form.useWatch("username", form);
+  const password = Form.useWatch("password", form);
   const handClick = () => {
-    navigate("/home");
+    if (userName && password) {
+      navigate("/home");
+    }
   };
   return (
     <Form name="basic" form={form} className="login">
