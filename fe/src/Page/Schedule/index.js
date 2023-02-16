@@ -59,8 +59,6 @@ export default function Schedule() {
     });
   }, []);
 
-  console.log(schedule);
-
   useEffect(() => {
     setData([]);
     scheduleStaff.forEach((element) => {
@@ -83,6 +81,7 @@ export default function Schedule() {
   const handleEdit = () => {
     setEdit(true);
   };
+  console.log(edit, add);
 
   return (
     <div>

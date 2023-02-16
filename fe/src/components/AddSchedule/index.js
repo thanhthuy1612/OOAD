@@ -30,7 +30,12 @@ export default function AddSchedule({ handleClick }) {
   return (
     <>
       <Form name="basic" form={form}>
-        <div className="content">ADD SCHEDULE</div>
+        <div className="content">
+          <p>ADD</p>
+          <div className="click" onClick={handleClick}>
+            X
+          </div>
+        </div>
         {items.map((item, index) => (
           <Form.Item
             label={item.name}

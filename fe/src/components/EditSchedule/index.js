@@ -22,7 +22,6 @@ export default function EditSchedule({ handleClick }) {
       idScheduleCurrent: idScheduleCurrent,
     });
   }, [idScheduleNew, idStaff, idScheduleCurrent]);
-  console.log(data);
   const handClick = () => {
     axios
       .put(`${request.STAFF_SCHEDULE}`, {}, { params: { ...data } })
@@ -35,7 +34,12 @@ export default function EditSchedule({ handleClick }) {
   return (
     <>
       <Form name="basic" form={form}>
-        <div className="content">EDIT SCHEDULE</div>
+        <div className="content">
+          <p>EDIT</p>
+          <div className="click" onClick={handleClick}>
+            X
+          </div>
+        </div>
         {items.map((item, index) => (
           <Form.Item
             label={item.name}

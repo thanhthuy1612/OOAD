@@ -4,7 +4,6 @@ export default function ShowData({ data }) {
   const img =
     "../../assets/images/" +
     data.image.split("/")[data.image.split("/").length - 1];
-  console.log(img);
   return (
     <div className="data">
       <div>Image: </div>

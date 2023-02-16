@@ -10,7 +10,6 @@ export default function DeleteAlert({ data, handleClose }) {
       .then((response) => response);
     handleClose();
   };
-  console.log(data);
   return (
     <div className="delete">
       <div className="content">
