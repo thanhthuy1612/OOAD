@@ -98,6 +98,19 @@ def getAllStaff():
         })
     return jsonify({"staff": data})
 
+@app.route("/licenseNumber", methods=['GET'])
+@cross_origin(origin='*')
+def getAllLicenseNumber():
+    rows = get.get_all("SELECT * FROM license_number")
+    data = []
+    for r in rows:
+        data.append({
+            "id": r[0],
+            "license_number": r[1],
+            "image": r[2]
+        })
+    return jsonify({"licenseNumber": data})
+
 @app.route("/staffSchedule", methods=['GET'])
 @cross_origin(origin='*')
 def getAllStaffSchedule():
@@ -154,6 +167,15 @@ def postLogDetail():
     staffId = request.args.get("staffId")
     if(logId):
         post.post_log_detail(logId, time, type, image, staffId)
+        return jsonify({"status": 1, "message": "Successful"})
+    return jsonify({"status": -1, "message": "Fail"})
+
+@app.route("/licenseNumber", methods=['POST'])
+@cross_origin(origin='*')
+def postLicenseNumber():
+    image = request.args.get("image")
+    if(image):
+        post.post_license_number(image)
         return jsonify({"status": 1, "message": "Successful"})
     return jsonify({"status": -1, "message": "Fail"})
 
@@ -218,27 +240,20 @@ def putCard():
 @app.route("/log", methods=['PUT'])
 @cross_origin(origin='*')
 def putLog():
-    total_price = request.args.get("total_price")
-    entry_id = request.args.get("entry_id")
     exit_id = request.args.get("exit_id")
-    card_id = request.args.get("card_id")
     id = request.args.get("id")
-    if(total_price):
-        update.update_log(total_price, entry_id, exit_id, card_id, id)
+    if(id):
+        update.update_log(exit_id, id)
         return jsonify({"status": 1, "message": "Successful"})
     return jsonify({"status": -1, "message": "Fail"})
 
 @app.route("/logDetail", methods=['PUT'])
 @cross_origin(origin='*')
 def putLogDetail():
-    logId = request.args.get("logId")
     time = request.args.get("time")
-    type = request.args.get("type")
-    image = request.args.get("image")
-    staffId = request.args.get("staffId")
     id = request.args.get("id")
-    if(logId):
-        update.update_log_detail(logId, time, type, image, staffId, id)
+    if(id):
+        update.update_log_detail(time, id)
         return jsonify({"status": 1, "message": "Successful"})
     return jsonify({"status": -1, "message": "Fail"})
 

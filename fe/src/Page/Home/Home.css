@@ -11,3 +11,11 @@
   display: flex;
   justify-content: space-around;
 }
+
+.flex{
+  display: flex;
+  flex-direction: row;
+}
+.flex * {
+  margin-right: 20px;
+}

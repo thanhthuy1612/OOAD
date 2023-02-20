@@ -1,5 +1,4 @@
 import sqlite3
-import ultis
 
 def update_card_type(name, id):
     conn = sqlite3.connect("./be/data/data.db")
@@ -29,35 +28,26 @@ def update_card(code, base_price, type, price_script, card_type_id, id):
     conn.close()
     return data
 
-def update_log(total_price, entry_id, exit_id, card_id, id):
+def update_log(exit_id, id):
     conn = sqlite3.connect("./be/data/data.db")
     sql='''
     UPDATE log
-        SET total_price = ?,
-            entry_id = ?,
-            exit_id = ?,
-            card_id = ?
+        SET exit_id = ?
         WHERE id = ?;
     '''
-    data = conn.execute(sql, [total_price, entry_id, exit_id, card_id, id])
+    data = conn.execute(sql, [exit_id, id])
     conn.commit()
     conn.close()
     return data
 
-def update_log_detail(logId, time, type, image, staffId, id):
+def update_log_detail(time, id):
     conn = sqlite3.connect("./be/data/data.db")
-    lisence_number = ultis.license_number(image)
     sql='''
     UPDATE log_detail
-        SET logId = ?,
-            time = ?,
-            type = ?,
-            image = ?,
-            lisence_number = ?,
-            staffId = ?
+        SET time = ?
         WHERE id = ?;
     '''
-    data = conn.execute(sql, [logId, time, type, image, lisence_number, staffId, id])
+    data = conn.execute(sql, [time, id])
     conn.commit()
     conn.close()
     return data

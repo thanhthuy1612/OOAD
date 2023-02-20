@@ -14,6 +14,16 @@ const Profile = () => {
     setPicture(pictureSrc);
   }, []);
 
+  const handleClickRetake = (e) => {
+    e.preventDefault();
+    setPicture("");
+  };
+
+  const handleClickCapture = (e) => {
+    e.preventDefault();
+    capture();
+  };
+
   return (
     <div>
       <div>Camera: </div>
@@ -33,23 +43,11 @@ const Profile = () => {
       </div>
       <div>
         {picture !== "" ? (
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              setPicture();
-            }}
-            className="btn btn-primary"
-          >
+          <button onClick={handleClickRetake} className="btn btn-primary">
             Retake
           </button>
         ) : (
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              capture();
-            }}
-            className="btn btn-danger"
-          >
+          <button onClick={handleClickCapture} className="btn btn-danger">
             Capture
           </button>
         )}

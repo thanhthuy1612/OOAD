@@ -8,4 +8,5 @@ export const request = {
   SCHEDULE: url + "/schedule",
   STAFF: url + "/staff",
   STAFF_SCHEDULE: url + "/staffSchedule",
+  LICENSE_NUMBER: url + "/licenseNumber",
 };

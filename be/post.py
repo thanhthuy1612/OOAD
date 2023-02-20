@@ -30,6 +30,14 @@ def post_log_detail(logId, time, type, image, staffId):
     conn.close()
     return data
 
+def post_license_number(image):
+    conn = sqlite3.connect("./be/data/data.db")
+    license_number = ultis.license_number(image)
+    data = conn.execute("INSERT INTO license_number (license_number, image) VALUES ( ?, ?)", [license_number, image])
+    conn.commit()
+    conn.close()
+    return data
+
 def post_schedule(timeStart, timeEnd, scheduleName):
     conn = sqlite3.connect("./be/data/data.db")
     data = conn.execute("INSERT INTO schedule (timeStart, timeEnd, scheduleName) VALUES ( ?, ?, ? )", [timeStart, timeEnd, scheduleName])

@@ -7,6 +7,8 @@ import { Form, Input, Button } from "antd";
 import "./Home.css";
 import Info from "../../components/Info";
 import Profile from "../../components/Camera";
+import AddItem from "../../components/AddItem";
+import OutItem from "../../components/OutItem";
 
 export default function Home() {
   const [logDetail, setLogDetail] = useState([]);
@@ -17,6 +19,7 @@ export default function Home() {
   const [data, setData] = useState([]);
   const [idLog, setIdLog] = useState([]);
   const [type, setType] = useState("in");
+  const [typeOpen, setTypeOpen] = useState("close");
 
   const id = Form.useWatch("cardId", form);
 
@@ -33,7 +36,7 @@ export default function Home() {
     axios.get(`${request.LOG}`).then((response) => {
       setLog(response.data.log);
     });
-  }, []);
+  }, [form]);
 
   const handleChange = () => {
     switch (type) {
@@ -46,6 +49,27 @@ export default function Home() {
       default:
         break;
     }
+  };
+  const handleOpen = () => {
+    switch (typeOpen) {
+      case "open":
+        setTypeOpen("close");
+        break;
+      case "close":
+        setTypeOpen("open");
+        break;
+      default:
+        break;
+    }
+  };
+
+  const handleOpenList = async () => {
+    setTimeout(() => {
+      setTypeOpen("open");
+    }, 5000);
+    setTimeout(() => {
+      setTypeOpen("close");
+    }, 10000);
   };
 
   const handClick = () => {
@@ -63,7 +87,12 @@ export default function Home() {
 
   return (
     <div>
-      <ButtonRadio type={type} onChange={handleChange} />
+      <ButtonRadio
+        type={type}
+        onChange={handleChange}
+        typeOpen={typeOpen}
+        onOpen={handleOpen}
+      />
       {type === "out" ? (
         <div className="showData">
           <Form name="basic" form={form}>
@@ -90,13 +119,17 @@ export default function Home() {
                 <Info data={idLog} />
               </div>
               <Profile />
+              <OutItem data={data} handleOpen={handleOpenList} />
             </div>
           ) : (
             <div className="data">Card Id does not exit</div>
           )}
         </div>
       ) : (
-        <Profile />
+        <div className="flex">
+          <Profile />
+          <AddItem handleOpen={handleOpenList} />
+        </div>
       )}
     </div>
   );
