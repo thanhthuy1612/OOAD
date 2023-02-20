@@ -64,9 +64,7 @@ export default function Home() {
   };
 
   const handleOpenList = async () => {
-    setTimeout(() => {
-      setTypeOpen("open");
-    }, 5000);
+    setTypeOpen("open");
     setTimeout(() => {
       setTypeOpen("close");
     }, 10000);
