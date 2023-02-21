@@ -36,7 +36,7 @@ export default function Home() {
     axios.get(`${request.LOG}`).then((response) => {
       setLog(response.data.log);
     });
-  }, [form]);
+  }, [id, type]);
 
   const handleChange = () => {
     switch (type) {
