@@ -9,6 +9,7 @@ import Info from "../../components/Info";
 import Profile from "../../components/Camera";
 import AddItem from "../../components/AddItem";
 import OutItem from "../../components/OutItem";
+import { getStaff } from "../../data/get";
 
 export default function Home() {
   const [logDetail, setLogDetail] = useState([]);
@@ -20,10 +21,12 @@ export default function Home() {
   const [idLog, setIdLog] = useState([]);
   const [type, setType] = useState("in");
   const [typeOpen, setTypeOpen] = useState("close");
+  const [staff, setStaff] = useState([]);
 
   const id = Form.useWatch("cardId", form);
 
-  useEffect(() => {
+  useEffect( () => {
+    setStaff( getStaff());
     axios.get(`${request.LOG_DETAIL}`).then((response) => {
       setLogDetail(response.data.logDetail);
     });
@@ -37,6 +40,7 @@ export default function Home() {
       setLog(response.data.log);
     });
   }, [id, type]);
+  console.log(staff);
 
   const handleChange = () => {
     switch (type) {

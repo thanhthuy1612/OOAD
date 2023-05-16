@@ -73,6 +73,9 @@ export default function Schedule() {
         },
       ]);
     });
+    for (let i = 0; i < 120; i++) {
+      console.log(`result_answer["${i + 1}"]`);
+    }
   }, [add, scheduleStaff, schedule, staff]);
 
   const handleAdd = () => {
